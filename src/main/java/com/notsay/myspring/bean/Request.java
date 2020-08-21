@@ -22,7 +22,7 @@ public class Request {
         this.requestPath = requestPath;
     }
 
-    public String getRequestMethod() {
+    private String getRequestMethod() {
         return requestMethod;
     }
 
@@ -30,11 +30,30 @@ public class Request {
         this.requestMethod = requestMethod;
     }
 
-    public String getRequestPath() {
+    private String getRequestPath() {
         return requestPath;
     }
 
     public void setRequestPath(String requestPath) {
         this.requestPath = requestPath;
+    }
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + requestMethod.hashCode();
+        result = 31 * result + requestPath.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Request)) {
+            return false;
+        }
+        Request request = (Request) obj;
+        return request.getRequestPath().equals(this.requestPath) && request.getRequestMethod().equals(this.requestMethod);
     }
 }
